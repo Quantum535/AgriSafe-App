@@ -1,52 +1,59 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
+import { Platform } from 'react-native';
 
-import { Colors } from '@/constants/Colors';
-import { Home, Scan, TrendingUp, Settings } from 'lucide-react-native';
+import { Theme, Font } from '@/constants/Colors';
+import { LayoutGrid, ScanLine, Activity, Server } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.light.primary,
-        tabBarInactiveTintColor: Colors.light.secondaryText,
+        tabBarActiveTintColor: Theme.accent,
+        tabBarInactiveTintColor: Theme.textTertiary,
         headerShown: false,
         tabBarStyle: {
+          backgroundColor: Theme.bgElevated,
           borderTopWidth: 1,
-          borderColor: Colors.light.border,
+          borderTopColor: Theme.border,
           elevation: 0,
-          shadowOpacity: 0,
-          height: 60,
-          paddingBottom: 8,
+          height: Platform.OS === 'ios' ? 88 : 64,
           paddingTop: 8,
+          paddingBottom: Platform.OS === 'ios' ? 30 : 10,
+        },
+        tabBarLabelStyle: {
+          fontFamily: Font.mono,
+          fontSize: 10,
+          letterSpacing: 0.5,
+          marginTop: 2,
         },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Glance',
-          tabBarIcon: ({ color }) => <Home size={24} color={color} />,
+          title: 'GLANCE',
+          tabBarIcon: ({ color }) => <LayoutGrid size={22} color={color} strokeWidth={2} />,
         }}
       />
       <Tabs.Screen
         name="diagnostic"
         options={{
-          title: 'Diagnostic',
-          tabBarIcon: ({ color }) => <Scan size={24} color={color} />,
+          title: 'DIAGNOSE',
+          tabBarIcon: ({ color }) => <ScanLine size={22} color={color} strokeWidth={2} />,
         }}
       />
       <Tabs.Screen
         name="trends"
         options={{
-          title: 'Trends',
-          tabBarIcon: ({ color }) => <TrendingUp size={24} color={color} />,
+          title: 'TRENDS',
+          tabBarIcon: ({ color }) => <Activity size={22} color={color} strokeWidth={2} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Offline',
-          tabBarIcon: ({ color }) => <Settings size={24} color={color} />,
+          title: 'NODE',
+          tabBarIcon: ({ color }) => <Server size={22} color={color} strokeWidth={2} />,
         }}
       />
     </Tabs>

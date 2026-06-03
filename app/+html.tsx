@@ -27,12 +27,8 @@ export default function Root({ children }: { children: React.ReactNode }) {
   );
 }
 
+// AgriSafe is a single dark experience on every platform.
 const responsiveBackground = `
 body {
-  background-color: #fff;
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-  }
+  background-color: #08090B;
 }`;
